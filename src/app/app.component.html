@@ -1,0 +1,24 @@
+<form [formGroup]="profile">
+  <app-favorite-color-component [favoriteColor]="profile.controls.favoriteColor" *ngIf="profile.value.favoriteColor"></app-favorite-color-component>
+</form>
+<button (click)="addUser()">Add User</button>
+<button (click)="changeColor()">Change Color</button>
+
+<hr>
+
+<mat-form-field class="example-form-field" appearance="fill">
+  <mat-label>Example Text Box</mat-label>
+  <input matInput type="text" [formControl]="profile.controls.favoriteColor">
+  <button *ngIf="profile.controls.favoriteColor.value" matSuffix mat-icon-button aria-label="Clear" (click)="profile.controls.favoriteColor.setValue('')">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<hr>
+<select>
+  <option *ngFor="let user of (profile.controls.users.controls)">
+    {{user.value.name}}
+  </option>
+</select>
+
+<router-outlet></router-outlet>
